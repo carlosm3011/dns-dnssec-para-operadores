@@ -2,3 +2,6 @@
 .DS_Store
 .obsidian
 .quarto
+
+/.quarto/
+**/*.quarto_ipynb
