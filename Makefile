@@ -38,11 +38,11 @@ $(BOOK_PDF): $(MD_FILES) $(CONFIG) $(SCRIPTS)
 	quarto render; status=$$?; bash scripts/mermaid-post-render.sh; exit $$status
 
 release:
-	git commit -a -m "new release $(VERSION)"
+	-git commit -a -m "new release $(VERSION)"
 	git push 
 	git tag $(VERSION)
 	git push origin $(VERSION)
 
 clean:
-	rm -rf _book .quarto
-	rm -f *.qmd
+	-rm -rf _book .quarto
+	-rm -f *.qmd
