@@ -24,7 +24,7 @@ book:
     multi-firmantes.
   keyword: "dns, DNSSEC, bind, troubleshooting"
   license: "CC BY"
-  version: "0.6.1"
+  version: "0.6.2"
   date: 2026-08-07
   chapters:
     - index.qmd
