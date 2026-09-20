@@ -201,13 +201,29 @@ add_multiline_textbox(s10, Inches(0.4), Inches(4.35), Inches(9.2), Inches(0.6), 
 ], size=13, color=GRAY, italic=True)
 
 # ---------------------------------------------------------------------------
-# Slide 12 -- MAIN_POINT: delv insecure es esperado
+# Slide 12 -- TITLE_ONLY: verificación con delv
+# ---------------------------------------------------------------------------
+s11b = prs.slides.add_slide(layouts["TITLE_ONLY"])
+set_title(s11b, "delv valida la cadena de confianza")
+add_code_block(s11b, Inches(0.4), Inches(1.1), Inches(9.2), Inches(1.8), [
+    "$ delv @127.0.0.1 example.com A",
+    ";; validating example.com/A: no valid signature found...",
+    ";; resolution failed: insecure",
+    "93.184.216.34",
+], size=13)
+add_multiline_textbox(s11b, Inches(0.4), Inches(3.15), Inches(9.2), Inches(0.9), [
+    "A diferencia de dig, delv no solo pregunta si la firma existe — intenta validar",
+    "la cadena de confianza completa, como haría un resolver validador real.",
+], size=14, color=GRAY)
+
+# ---------------------------------------------------------------------------
+# Slide 13 -- MAIN_POINT: delv insecure es esperado
 # ---------------------------------------------------------------------------
 s11 = prs.slides.add_slide(layouts["MAIN_POINT"])
 set_title(s11, "delv dice \"insecure\" — y está bien.\nEl DS todavía no está publicado en el padre.")
 
 # ---------------------------------------------------------------------------
-# Slide 13 -- TITLE_ONLY: dnssec-verify
+# Slide 14 -- TITLE_ONLY: dnssec-verify
 # ---------------------------------------------------------------------------
 s12 = prs.slides.add_slide(layouts["TITLE_ONLY"])
 set_title(s12, "dnssec-verify: chequear sin depender del padre")
@@ -220,7 +236,7 @@ add_code_block(s12, Inches(0.4), Inches(1.15), Inches(9.2), Inches(2.6), [
 ], size=13)
 
 # ---------------------------------------------------------------------------
-# Slide 14 -- TITLE_ONLY: publicar el DS (dsfromkey + flujo)
+# Slide 15 -- TITLE_ONLY: publicar el DS (dsfromkey + flujo)
 # ---------------------------------------------------------------------------
 s13 = prs.slides.add_slide(layouts["TITLE_ONLY"])
 set_title(s13, "Publicación del DS en el padre")
@@ -236,7 +252,7 @@ add_multiline_textbox(s13, Inches(0.4), Inches(2.5), Inches(9.2), Inches(2.3), [
 ], size=15)
 
 # ---------------------------------------------------------------------------
-# Slide 15 -- TITLE_ONLY: cadena de confianza cerrada
+# Slide 16 -- TITLE_ONLY: cadena de confianza cerrada
 # ---------------------------------------------------------------------------
 s14 = prs.slides.add_slide(layouts["TITLE_ONLY"])
 set_title(s14, "La cadena de confianza queda completa")
@@ -250,7 +266,7 @@ add_multiline_textbox(s14, Inches(0.4), Inches(2.8), Inches(9.2), Inches(0.7), [
 ], size=15, color=GRAY, italic=True)
 
 # ---------------------------------------------------------------------------
-# Slide 16 -- TITLE_AND_TWO_COLUMNS: rollovers panorama general
+# Slide 17 -- TITLE_AND_TWO_COLUMNS: rollovers panorama general
 # ---------------------------------------------------------------------------
 s15 = prs.slides.add_slide(layouts["TITLE_AND_TWO_COLUMNS"])
 set_title(s15, "Rollovers: panorama general")
@@ -272,7 +288,7 @@ col2.text_frame.paragraphs[0].runs[0].font.bold = True
 col2.text_frame.paragraphs[0].runs[0].font.color.rgb = RED
 
 # ---------------------------------------------------------------------------
-# Slide 17 -- TITLE_ONLY + table: Resumen
+# Slide 18 -- TITLE_ONLY + table: Resumen
 # ---------------------------------------------------------------------------
 s16 = prs.slides.add_slide(layouts["TITLE_ONLY"])
 set_title(s16, "Resumen")
@@ -287,7 +303,7 @@ add_table(s16, Inches(0.4), Inches(1.15), Inches(9.2), Inches(3.4), [
     mono_cols={0})
 
 # ---------------------------------------------------------------------------
-# Slide 18 -- TITLE_AND_BODY: cierre + siguiente módulo
+# Slide 19 -- TITLE_AND_BODY: cierre + siguiente módulo
 # ---------------------------------------------------------------------------
 s17 = prs.slides.add_slide(layouts["TITLE_AND_BODY"])
 set_title(s17, "Antes de monitorear")
