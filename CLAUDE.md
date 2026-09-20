@@ -4,9 +4,9 @@
 Part of Training. A course/workshop aimed at operators, covering DNSSEC from a practical, hands-on perspective — signing, validation, key management, and troubleshooting.
 
 ## Status
-Written material complete. All 7 modules drafted: 01-Introduccion, 02-Registros, 03-Zonas-BIND, 04-Firmando-con-BIND-y-KASP, 05-Monitoreo-Troubleshooting, 06-Arquitectura-Hidden-Signer, 07-DNSSEC-Avanzado (NSEC3, full KASP rollover mechanics, algorithm rollover, CDS/CDNSKEY, multi-signer).
+Released. All 7 modules drafted: 01-Introduccion, 02-Registros, 03-Zonas-BIND, 04-Firmando-con-BIND-y-KASP, 05-Monitoreo-Troubleshooting, 06-Arquitectura-Hidden-Signer, 07-DNSSEC-Avanzado (NSEC3, full KASP rollover mechanics, algorithm rollover, CDS/CDNSKEY, multi-signer).
 
-Slide decks complete: one `.pptx` per module in `_slides/`, built against the LACNIC template. Next: review pass across all modules (text + slides).
+Slide decks complete: one `.pptx` per module in `_slides/`, built against the LACNIC template. Book PDF built via Quarto (`make book`) and released as v0.6.2 (tag pushed, GitHub release publishes `_book/*.pdf` automatically). Content, slides, and PDF are all in sync as of the v0.6.2 build.
 
 ## Slide decks
 
