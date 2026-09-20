@@ -66,7 +66,10 @@ deps:
 	@# is required on Homebrew Python (PEP 668) and is safe combined with --user.
 	python3 -m pip install --quiet --upgrade --user --break-system-packages python-pptx
 	@echo "==> Verifying"
-	quarto check
+	@# Run outside this directory: quarto check also validates the current
+	@# project if one is present, and _quarto.yml's chapters are .qmd files
+	@# that only exist transiently during 'make book' (see note up top).
+	cd /tmp && quarto check
 
 book: $(BOOK_PDF)
 

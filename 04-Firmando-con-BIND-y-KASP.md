@@ -62,8 +62,20 @@ Algunas notas sobre esta política de ejemplo:
 
 - **Algoritmo `ecdsap256sha256`** — el mismo algoritmo 13 que vimos en los RRSIG de `isc.org` en el módulo 2. Vas a ver el mismo número en el `dig` más abajo.
 - **`ksk lifetime unlimited`** — no rota automáticamente; el rollover de KSK, cuando se necesite, se dispara a mano (tiene sentido: cada rollover de KSK implica coordinar el DS en el padre, no es algo para dejar en piloto automático).
-- **`zsk lifetime P90D`** — rota cada 90 días sin intervención (formato de duración tipo ISO 8601: `P90D` = 90 días, `PT1H` = 1 hora).
+- **`zsk lifetime P90D`** — rota cada 90 días sin intervención.
 - **Sin `nsec3param`** — al no declararlo, la política usa **NSEC**, lo mismo que vimos en el módulo 2. NSEC3 es una opción explícita (`nsec3param ...`) que se cubre en el módulo 7.
+
+> Nota sobre el formato de duración: todos esos valores (`P90D`, `PT1H`, `P5D`...) son duraciones ISO 8601, no una sintaxis propia de BIND. La `P` inicial marca "período"; lo que sigue son dígitos y una letra de unidad. Si en el medio aparece una `T`, todo lo que va después de la `T` son unidades de tiempo del día (horas/minutos/segundos) en vez de unidades de fecha (días/semanas/meses/años) — la `T` existe porque `M` sola es ambigua entre "meses" y "minutos", y separa un lado del otro.
+>
+> | Notación | Significado |
+> | --- | --- |
+> | `P90D` | 90 días |
+> | `P2W` | 2 semanas |
+> | `P1D` | 1 día |
+> | `PT1H` | 1 hora |
+> | `PT10M` | 10 minutos (la `T` la distingue de `P10M`, que serían 10 *meses*) |
+>
+> Vas a ver esta misma notación en cada `dnssec-policy` del resto del curso, y con valores bien cortos (minutos en vez de días o semanas) cuando en el módulo 5 achiquemos `signatures-validity`/`signatures-refresh` a propósito, para forzar un escenario de firma vencida sin esperar semanas.
 
 Y en la zona, dentro de `named.conf.local`:
 

@@ -119,7 +119,29 @@ set_body_bullets(body7, [
 ], size=17, space_after=13)
 
 # ---------------------------------------------------------------------------
-# Slide 8 -- TITLE_ONLY: la zona en named.conf.local
+# Slide 8 -- TITLE_ONLY: nota sobre el formato de duración ISO 8601
+# ---------------------------------------------------------------------------
+s7b = prs.slides.add_slide(layouts["TITLE_ONLY"])
+set_title(s7b, "Nota: el formato de duración (P90D, PT1H...)")
+add_multiline_textbox(s7b, Inches(0.4), Inches(1.05), Inches(9.2), Inches(1.0), [
+    "Son duraciones ISO 8601, no una sintaxis propia de BIND. La P inicial marca",
+    "\"período\"; si aparece una T, todo lo que sigue son unidades de tiempo del día",
+    "(horas/minutos/segundos) en vez de unidades de fecha (días/semanas/meses/años).",
+], size=15)
+add_table(s7b, Inches(0.4), Inches(2.15), Inches(9.2), Inches(2.6), [
+    ("Notación", "Significado"),
+    ("P90D", "90 días"),
+    ("P2W", "2 semanas"),
+    ("P1D", "1 día"),
+    ("PT1H", "1 hora"),
+    ("PT10M", "10 minutos (la T la distingue de P10M, 10 meses)"),
+], col_widths=[Inches(2.2), Inches(7.0)], size=14, header_size=15, mono_cols={0})
+add_multiline_textbox(s7b, Inches(0.4), Inches(4.9), Inches(9.2), Inches(0.5), [
+    "Misma notación en cada dnssec-policy del curso — con valores bien cortos en el módulo 5.",
+], size=13, color=GRAY, italic=True)
+
+# ---------------------------------------------------------------------------
+# Slide 9 -- TITLE_ONLY: la zona en named.conf.local
 # ---------------------------------------------------------------------------
 s8 = prs.slides.add_slide(layouts["TITLE_ONLY"])
 set_title(s8, "La zona: named.conf.local")
@@ -141,7 +163,7 @@ add_multiline_textbox(s8, Inches(0.4), Inches(4.35), Inches(9.2), Inches(0.6), [
 ], size=13, color=GRAY, italic=True)
 
 # ---------------------------------------------------------------------------
-# Slide 9 -- TITLE_ONLY: firmado automático
+# Slide 10 -- TITLE_ONLY: firmado automático
 # ---------------------------------------------------------------------------
 s9 = prs.slides.add_slide(layouts["TITLE_ONLY"])
 set_title(s9, "Firmado automático de zona")
@@ -161,7 +183,7 @@ add_code_block(s9, Inches(0.4), Inches(1.1), Inches(9.2), Inches(3.9), [
 ], size=12)
 
 # ---------------------------------------------------------------------------
-# Slide 10 -- TITLE_ONLY: verificación con dig
+# Slide 11 -- TITLE_ONLY: verificación con dig
 # ---------------------------------------------------------------------------
 s10 = prs.slides.add_slide(layouts["TITLE_ONLY"])
 set_title(s10, "Verificación de la firma")
@@ -179,13 +201,13 @@ add_multiline_textbox(s10, Inches(0.4), Inches(4.35), Inches(9.2), Inches(0.6), 
 ], size=13, color=GRAY, italic=True)
 
 # ---------------------------------------------------------------------------
-# Slide 11 -- MAIN_POINT: delv insecure es esperado
+# Slide 12 -- MAIN_POINT: delv insecure es esperado
 # ---------------------------------------------------------------------------
 s11 = prs.slides.add_slide(layouts["MAIN_POINT"])
 set_title(s11, "delv dice \"insecure\" — y está bien.\nEl DS todavía no está publicado en el padre.")
 
 # ---------------------------------------------------------------------------
-# Slide 12 -- TITLE_ONLY: dnssec-verify
+# Slide 13 -- TITLE_ONLY: dnssec-verify
 # ---------------------------------------------------------------------------
 s12 = prs.slides.add_slide(layouts["TITLE_ONLY"])
 set_title(s12, "dnssec-verify: chequear sin depender del padre")
@@ -198,7 +220,7 @@ add_code_block(s12, Inches(0.4), Inches(1.15), Inches(9.2), Inches(2.6), [
 ], size=13)
 
 # ---------------------------------------------------------------------------
-# Slide 13 -- TITLE_ONLY: publicar el DS (dsfromkey + flujo)
+# Slide 14 -- TITLE_ONLY: publicar el DS (dsfromkey + flujo)
 # ---------------------------------------------------------------------------
 s13 = prs.slides.add_slide(layouts["TITLE_ONLY"])
 set_title(s13, "Publicación del DS en el padre")
@@ -214,7 +236,7 @@ add_multiline_textbox(s13, Inches(0.4), Inches(2.5), Inches(9.2), Inches(2.3), [
 ], size=15)
 
 # ---------------------------------------------------------------------------
-# Slide 14 -- TITLE_ONLY: cadena de confianza cerrada
+# Slide 15 -- TITLE_ONLY: cadena de confianza cerrada
 # ---------------------------------------------------------------------------
 s14 = prs.slides.add_slide(layouts["TITLE_ONLY"])
 set_title(s14, "La cadena de confianza queda completa")
@@ -228,7 +250,7 @@ add_multiline_textbox(s14, Inches(0.4), Inches(2.8), Inches(9.2), Inches(0.7), [
 ], size=15, color=GRAY, italic=True)
 
 # ---------------------------------------------------------------------------
-# Slide 15 -- TITLE_AND_TWO_COLUMNS: rollovers panorama general
+# Slide 16 -- TITLE_AND_TWO_COLUMNS: rollovers panorama general
 # ---------------------------------------------------------------------------
 s15 = prs.slides.add_slide(layouts["TITLE_AND_TWO_COLUMNS"])
 set_title(s15, "Rollovers: panorama general")
@@ -250,7 +272,7 @@ col2.text_frame.paragraphs[0].runs[0].font.bold = True
 col2.text_frame.paragraphs[0].runs[0].font.color.rgb = RED
 
 # ---------------------------------------------------------------------------
-# Slide 16 -- TITLE_ONLY + table: Resumen
+# Slide 17 -- TITLE_ONLY + table: Resumen
 # ---------------------------------------------------------------------------
 s16 = prs.slides.add_slide(layouts["TITLE_ONLY"])
 set_title(s16, "Resumen")
@@ -265,7 +287,7 @@ add_table(s16, Inches(0.4), Inches(1.15), Inches(9.2), Inches(3.4), [
     mono_cols={0})
 
 # ---------------------------------------------------------------------------
-# Slide 17 -- TITLE_AND_BODY: cierre + siguiente módulo
+# Slide 18 -- TITLE_AND_BODY: cierre + siguiente módulo
 # ---------------------------------------------------------------------------
 s17 = prs.slides.add_slide(layouts["TITLE_AND_BODY"])
 set_title(s17, "Antes de monitorear")
