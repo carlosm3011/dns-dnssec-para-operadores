@@ -1,0 +1,47 @@
+\usepackage{graphicx}
+\let\oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[2][]{%
+  \oldincludegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{#2}%
+}
+
+% Custom title page addendum: the default LaTeX title block only
+% prints author names, silently dropping email/orcid/affiliation, and
+% has no notion of a package version or release history. This appends
+% those details manually below the standard title block. NOTE: the
+% author details below are hardcoded and duplicate the book:author:
+% metadata in _quarto.yml - if you change an author's email, ORCID, or
+% affiliation there, update this block too. The version string and the
+% version-history table are filled in by `make book` (via
+% scripts/generate-title-page.sh) from the Makefile's VERSION variable
+% and `git tag`, respectively - this file (title-page.tex.in) is the
+% tracked template; the generated title-page.tex (gitignored) is what
+% _quarto.yml actually includes. The history table only lists tags that
+% exist at build time, so the version being built won't list itself
+% (it isn't tagged yet) - "previous versions", as intended.
+\usepackage{hyperref}
+\let\oldmaketitle\maketitle
+\renewcommand{\maketitle}{%
+  \oldmaketitle
+  \begin{center}
+  \small
+  Versión @@VERSION@@
+  \bigskip
+
+  Carlos Martinez-Cagnazzo\\
+  LACNIC, Montevideo, Uruguay -- \url{https://www.lacnic.net}\\
+  ORCID: \url{https://orcid.org/0000-0001-8828-5239}\\
+  \href{mailto:carlos@lacnic.net}{carlos@lacnic.net}
+  \bigskip
+
+  Nicolás Antoniello\\
+  \href{mailto:nantoniello@gmail.com}{nantoniello@gmail.com}
+  \bigskip
+
+  \textbf{Historial de versiones}\\[4pt]
+  \begin{tabular}{ll}
+  \textbf{Versión} & \textbf{Fecha} \\
+  \hline
+  @@VERSION_HISTORY@@
+  \end{tabular}
+  \end{center}
+}

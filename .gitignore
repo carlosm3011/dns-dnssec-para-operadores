@@ -7,3 +7,4 @@
 **/*.quarto_ipynb
 /_slides/
 /_templates/
+/scripts/title-page.tex

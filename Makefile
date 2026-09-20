@@ -9,11 +9,14 @@
 # see quarto-dev/quarto-cli#11567. Always build via `make book`, not a
 # bare `quarto render`.)
 
-MD_FILES := $(filter-out CLAUDE.md,$(wildcard *.md))
-CONFIG   := _quarto.yml
-SCRIPTS  := scripts/mermaid-pre-render.sh scripts/mermaid-post-render.sh
-BOOK_PDF := _book/DNS-y-DNSSEC-para-Operadores.pdf
-VERSION  := "v0.6.3"
+MD_FILES      := $(filter-out CLAUDE.md,$(wildcard *.md))
+CONFIG        := _quarto.yml
+SCRIPTS       := scripts/mermaid-pre-render.sh scripts/mermaid-post-render.sh
+BOOK_PDF      := _book/DNS-y-DNSSEC-para-Operadores.pdf
+VERSION       := "v0.6.3"
+VERSION_CLEAN := $(subst ",,$(VERSION))
+TITLE_TEX_IN  := scripts/title-page.tex.in
+TITLE_TEX     := scripts/title-page.tex
 
 SLIDE_MODULES     := 01-Introduccion 02-Registros 03-Zonas-BIND \
                      04-Firmando-con-BIND-y-KASP 05-Monitoreo-Troubleshooting \
@@ -33,8 +36,9 @@ help:
 	@echo "               only; safe to re-run."
 	@echo " "
 	@echo "  make book    Render the book to PDF. Rebuilds only if a chapter"
-	@echo "               .md file, _quarto.yml, or a mermaid hook script"
-	@echo "               changed since the last build."
+	@echo "               .md file, _quarto.yml, a mermaid hook script, or the"
+	@echo "               Makefile (e.g. a VERSION bump) changed since the last"
+	@echo "               build. Title page shows VERSION and today's date."
 	@echo " "
 	@echo "  make slides  Rebuild every module's .pptx from $(SLIDE_TEMPLATE) via"
 	@echo "               scripts/slides/build_moduleNN.py, and copy the results"
@@ -73,7 +77,8 @@ deps:
 
 book: $(BOOK_PDF)
 
-$(BOOK_PDF): $(MD_FILES) $(CONFIG) $(SCRIPTS)
+$(BOOK_PDF): $(MD_FILES) $(CONFIG) $(SCRIPTS) $(TITLE_TEX_IN) scripts/generate-title-page.sh Makefile
+	bash scripts/generate-title-page.sh $(VERSION_CLEAN)
 	bash scripts/mermaid-pre-render.sh
 	quarto render; status=$$?; bash scripts/mermaid-post-render.sh; exit $$status
 
@@ -103,4 +108,5 @@ release:
 clean:
 	-rm -rf _book .quarto
 	-rm -f *.qmd
+	-rm -f $(TITLE_TEX)
 	-rm -f $(SLIDE_SCRIPTS_DIR)/lacnic46.pptx $(SLIDE_SCRIPTS_DIR)/*-wip.pptx
