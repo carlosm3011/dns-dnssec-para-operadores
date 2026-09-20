@@ -13,7 +13,7 @@ MD_FILES := $(filter-out CLAUDE.md,$(wildcard *.md))
 CONFIG   := _quarto.yml
 SCRIPTS  := scripts/mermaid-pre-render.sh scripts/mermaid-post-render.sh
 BOOK_PDF := _book/DNS-y-DNSSEC-para-Operadores.pdf
-VERSION  := "v0.6.2"
+VERSION  := "v0.6.3"
 
 SLIDE_MODULES     := 01-Introduccion 02-Registros 03-Zonas-BIND \
                      04-Firmando-con-BIND-y-KASP 05-Monitoreo-Troubleshooting \
